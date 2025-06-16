@@ -1,4 +1,4 @@
-// Ред от касова бележка: продукт, количество, обща цена
+// Receipt line: product, quantity, total price
 public class ReceiptItem {
     Product product;
     int quantity;
@@ -12,6 +12,6 @@ public class ReceiptItem {
 
     @Override
     public String toString() {
-        return product.getName() + " x" + quantity + " - " + String.format("%.2f", totalPrice) + " лв";
+        return product.getName() + " x" + quantity + " - " + String.format("%.2f", totalPrice) + "BGN";
     }
 }

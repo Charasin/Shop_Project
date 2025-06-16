@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-// Основен клас, който описва магазина
+// Main class that describes the store
 public class Store {
     List<Product> inventory = new ArrayList<>();
     List<Cashier> cashiers = new ArrayList<>();
@@ -52,7 +52,7 @@ public class Store {
         try {
             r.printAndSave();
         } catch (IOException ex) {
-            System.out.println("Грешка при запис: " + ex.getMessage());
+            System.out.println("Error while saving: " + ex.getMessage());
         }
         return r;
     }

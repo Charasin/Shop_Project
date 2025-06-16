@@ -2,41 +2,57 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
-// Клас за касова бележка
+// Class for receipt
 public class Receipt implements Serializable {
-    int number;
-    Cashier cashier;
-    LocalDateTime dateTime;
-    List<ReceiptItem> items;
-    double total;
+    private int number;
+    private Cashier cashier;
+    private LocalDate date;
+    private List<ReceiptItem> items;
+    private double total = 0.0;
 
     public Receipt(int n, Cashier c, List<ReceiptItem> i) {
         number = n;
         cashier = c;
-        dateTime = LocalDateTime.now();
+        date = LocalDate.now();
         items = i;
         for (ReceiptItem it : i) {
             total += it.totalPrice;
         }
     }
 
-    // Записва бележката във файл
+    // Saves the receipt to a file
     public void printAndSave() throws IOException {
         PrintWriter w = new PrintWriter(new FileWriter("receipt_" + number + ".txt"));
-        w.println("Касова бележка №" + number);
-        w.println("Касиер: " + cashier.getName());
-        w.println("Дата: " + dateTime);
+        w.println("Receipt No." + number);
+        w.println("Cashier: " + cashier.getName());
+        w.println("Date: " + date);
         for (ReceiptItem item : items) {
             w.println(item);
         }
-        w.println("Общо: " + String.format("%.2f", total) + " лв");
+        w.println("Total: " + String.format("%.2f", total) + "BGN");
         w.close();
     }
 
     public double getTotal() {
         return total;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public Cashier getCashier() {
+        return cashier;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public List<ReceiptItem> getItems() {
+        return items;
     }
 }

@@ -6,12 +6,11 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         Store store = new Store();
-
-        Cashier john = new Cashier(1, "Йоан Иванов", 1200);
+        Cashier john = new Cashier(1, "John Ivanov", 1200);
         store.addCashier(john);
 
-        store.addProduct(new FoodProduct(1, "Мляко", 1.2, LocalDate.now().plusDays(3), 100));
-        store.addProduct(new NonFoodProduct(2, "Телевизор", 300, LocalDate.now().plusYears(2), 10));
+        store.addProduct(new FoodProduct(1, "Milk", 1.2, LocalDate.now().plusDays(3), 100));
+        store.addProduct(new NonFoodProduct(2, "Television", 300, LocalDate.now().plusYears(2), 10));
 
         Map<Integer, Integer> basket = new HashMap<>();
         basket.put(1, 2);
@@ -19,13 +18,13 @@ public class App {
 
         try {
             Receipt r = store.sellProducts(basket, john);
-            System.out.println("Покупката е успешна. Обща сума: " + r.getTotal() + " лв");
+            System.out.println("Purchase successful. Total amount: " + r.getTotal() + "BGN");
         } catch (Exception e) {
-            System.out.println("Грешка: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
 
-        System.out.println("Оборот: " + store.getTotalIncome() + " лв");
-        System.out.println("Разходи: " + store.getTotalExpenses() + " лв");
-        System.out.println("Печалба: " + store.getProfit() + " лв");
+        System.out.println("Turnover: " + store.getTotalIncome() + "BGN");
+        System.out.println("Expenses: " + store.getTotalExpenses() + "BGN");
+        System.out.println("Profit: " + store.getProfit() + "BGN");
     }
 }
